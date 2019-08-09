@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import openSocket from 'socket.io-client';
 import QRCode from 'qrcode.react'
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -11,7 +10,7 @@ class  App extends Component {
     this.state ={
       isConnected : false ,
       hasConnectionEstablished: false,
-      connectionPort: 0
+      connectionPort: 8000
     }
     this.socket = {}
   }
@@ -53,14 +52,15 @@ class  App extends Component {
         <div className="App">
           <header className="App-header">
             <h1>
-              Smart KanBan
+              Smart Mirror KanBan
             </h1>
-            <QRCode value={connectionPort} />
+            <QRCode value={connectionPort.toString()} />
+            {/*<QRCode value={this.socket} />*/}
             <p>
               Scan to connect to this display
             </p>
-            {/*<input type="number" value={connectionPort} onChange={this.updateConnectionPort}/>*/}
-            {/*<button onClick={this.launchSocket}>Submit</button>*/}
+            <input type="number" value={connectionPort} onChange={this.updateConnectionPort}/>
+            <button onClick={this.launchSocket}>Submit</button>
           </header>
         </div>
     )
