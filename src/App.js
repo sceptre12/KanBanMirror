@@ -10,7 +10,8 @@ class  App extends Component {
     this.state ={
       isConnected : false ,
       hasConnectionEstablished: false,
-      connectionPort: 8000
+      connectionPort: 8000,
+      // serverIP: "https://172.30.21.136",
     }
     this.socket = {}
   }
@@ -21,9 +22,11 @@ class  App extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const {isConnected, hasConnectionEstablished, connectionPort} = this.state
+    // const {isConnected, hasConnectionEstablished, connectionPort, serverIP} = this.state
     if(isConnected && !hasConnectionEstablished){
       console.log("REACHHH")
       this.socket = openSocket(`172.30.21.136:${connectionPort}`);
+      // this.socket = openSocket(`${serverIP}:${connectionPort}`);
 
       this.socket.on('news', result =>{
         console.log(result)
@@ -48,19 +51,20 @@ class  App extends Component {
 
   render(){
     const {connectionPort} = this.state
+    // const {serverIP} = this.state
     return (
         <div className="App">
           <header className="App-header">
             <h1>
-              Smart Mirror KanBan
+              Smart Kan
             </h1>
-            <QRCode value={connectionPort.toString()} />
-            {/*<QRCode value={this.socket} />*/}
+            <QRCode value={connectionPort.toString()} size={200} />
+            {/*<QRCode value={serverIP.concat(connectionPort.toString())} size={200} />*/}
             <p>
               Scan to connect to this display
             </p>
-            <input type="number" value={connectionPort} onChange={this.updateConnectionPort}/>
-            <button onClick={this.launchSocket}>Submit</button>
+            {/*<input type="number" value={connectionPort} onChange={this.updateConnectionPort}/>*/}
+            <button onClick={this.launchSocket}>Connect</button>
           </header>
         </div>
     )
