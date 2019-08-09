@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import openSocket from 'socket.io-client';
-
+import QRCode from 'qrcode.react'
 import logo from './logo.svg';
 import './App.css';
 
@@ -64,6 +64,8 @@ class  App extends Component {
             >
               Learn React
             </a>
+
+            <QRCode value="8000" />
             <input type="number" value={connectionPort} onChange={this.updateConnectionPort}/>
             <button onClick={this.launchSocket}>Submit</button>
           </header>
