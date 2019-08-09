@@ -52,22 +52,15 @@ class  App extends Component {
     return (
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+            <h1>
+              Smart KanBan
+            </h1>
+            <QRCode value={connectionPort} />
             <p>
-              Edit <code>src/App.js</code> and save to reload.
+              Scan to connect to this display
             </p>
-            <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-
-            <QRCode value="8000" />
-            <input type="number" value={connectionPort} onChange={this.updateConnectionPort}/>
-            <button onClick={this.launchSocket}>Submit</button>
+            {/*<input type="number" value={connectionPort} onChange={this.updateConnectionPort}/>*/}
+            {/*<button onClick={this.launchSocket}>Submit</button>*/}
           </header>
         </div>
     )
