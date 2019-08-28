@@ -10,8 +10,7 @@ class  App extends Component {
     this.state ={
       isConnected : false ,
       hasConnectionEstablished: false,
-      connectionPort: 8000,
-      // serverIP: "https://172.30.21.136",
+      host: '10.0.0.17:8703',
     }
     this.socket = {}
   }
@@ -21,11 +20,11 @@ class  App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const {isConnected, hasConnectionEstablished, connectionPort} = this.state
+    const {isConnected, hasConnectionEstablished, host} = this.state
     // const {isConnected, hasConnectionEstablished, connectionPort, serverIP} = this.state
     if(isConnected && !hasConnectionEstablished){
       console.log("REACHHH")
-      this.socket = openSocket(`172.30.21.136:${connectionPort}`);
+      this.socket = openSocket(host);
       // this.socket = openSocket(`${serverIP}:${connectionPort}`);
 
       this.socket.on('news', result =>{
@@ -50,7 +49,8 @@ class  App extends Component {
   }
 
   render(){
-    const {connectionPort} = this.state
+    const {host} = this.state
+    console.log(host)
     // const {serverIP} = this.state
     return (
         <div className="App">
@@ -58,7 +58,7 @@ class  App extends Component {
             <h1>
               Smart Kan
             </h1>
-            <QRCode value={connectionPort.toString()} size={200} />
+            <QRCode value={host.toString()} size={200} />
             {/*<QRCode value={serverIP.concat(connectionPort.toString())} size={200} />*/}
             <p>
               Scan to connect to this display
